@@ -11,7 +11,7 @@
     "bundle-js": "babel src/js --out-file public/js/app.js",
     "browserify-js": "browserify public/js/app.js -o public/js/app.js",
     "build-js-production": "uglifyjs public/js/app.js --compress --source-map --output public/dist/js/app.js",
-    "build-js": "npm run bundle-js && npm run browserify-js && npm run build-js-production",
+    "build-js": "npm run bundle-js && npm run browserify-js && npm run build-js-production && cp views/index.ejs public/index.html",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Kevin Fechner <bkevinfechner1989@gmail.com>",

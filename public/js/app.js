@@ -1630,6 +1630,14 @@ process.umask = function() { return 0; };
 
 },{}],28:[function(require,module,exports){
 "use strict";
+
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker.register("/serviceworker.js").then(function (registration) {
+    console.log("serviceworker registered in scope:", registration.scope);
+  }).catch(function (err) {
+    console.log("service worker registration failed:", err);
+  });
+}
 'use strict';
 
 var axios = require('axios');
@@ -1638,8 +1646,6 @@ Vue.component('my-spaeti', {
   props: ['spaetkauf'],
   template: '<div class="single_spaetkauf">\n\n    <a v-bind:href="\'/spaetkauf/\' + spaetkauf.title" target="_blank">\n      {{ spaetkauf.name }}\n    </a>\n    <table>\n    <tr>\n      <td>Bezirk:</td><td>{{ spaetkauf.district }} </td>\n      </tr>\n      <tr>\n        <td>Adresse:</td><td>{{ spaetkauf.address.street }} {{spaetkauf.address.street_number}}</td>\n      </tr>\n      <tr>\n        <td></td><td>{{ spaetkauf.address.postalCode }} </td>\n      </tr>\n    </table>\n  </div>'
 });
-
-Vue.component('my-test', { template: '<div>test</div>' });
 
 Vue.component('google-map', {
   props: ['name'],

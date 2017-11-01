@@ -1,4 +1,3 @@
-
 var axios = require('axios');
 
 Vue.component('spaeti', {
@@ -23,9 +22,9 @@ var app = new Vue({
   }
 });
 
-axios.get('/json').then(function (response) {
+axios.get('/json').then(function(response) {
   console.log(response);
-}).catch(function (error) {
+}).catch(function(error) {
   console.log(error);
 });
 

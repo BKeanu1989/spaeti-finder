@@ -21,8 +21,6 @@ Vue.component('my-spaeti', {
   </div>`
 })
 
-Vue.component('my-test', {template: `<div>test</div>`})
-
 Vue.component('google-map', {
   props: ['name'],
   template: `
