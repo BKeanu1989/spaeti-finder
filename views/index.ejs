@@ -1,1 +1,42 @@
-test
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Späti Finder</title>
+  <style>
+  /* Always set the map height explicitly to define the size of the div
+   * element that contains the map. */
+  #map {
+    height: 100%;
+  }
+  /* Optional: Makes the sample page fill the window. */
+  html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+  .google-map {
+    width: 800px;
+    height: 600px;
+    margin: 0 auto;
+    background: gray;
+  }
+</style>
+</head>
+<body>
+  <h1>Späti Finder</h1>
+  <div id="vue">
+    <my-spaeti v-for="x in spaetKaufs" v-bind:spaetkauf="x" v-bind:key="x._id"></my-spaeti>
+    <google-map name="example"></google-map>
+    <my-test></my-test>
+  </div>
+  <script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA5G9Jp_FswYCdxZ6iAYibbR8SZQWIU-aE">
+    </script>
+  <script src="/intern/js/vue.js"></script>
+  <script src="/intern/js/app.js"></script>
+  <div id="map"></div>
+
+</body>
+</html>

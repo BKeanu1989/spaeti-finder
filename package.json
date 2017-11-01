@@ -1,4 +1,21 @@
 {
+  "name": "spaeti-finder",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "scss-production": "node-sass --output-style compressed --source-map true -o public/dist/css src/scss",
+    "scss-development": "node-sass --output-style --source-map true -o public/css src/scss",
+    "autoprefixer": "postcss -u autoprefixer -r public/css/style.css && postcss -u autoprefixer -r public/css/dist/style.css",
+    "build-css": "npm run scss-development && npm run scss-production && npm run autoprefixer",
+    "bundle-js": "babel src/js --out-file public/js/app.js",
+    "browserify-js": "browserify public/js/app.js -o public/js/app.js",
+    "build-js-production": "uglifyjs public/js/app.js --compress --source-map --output public/dist/js/app.js",
+    "build-js": "npm run bundle-js && npm run browserify-js && npm run build-js-production",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Kevin Fechner <bkevinfechner1989@gmail.com>",
+  "license": "MIT",
   "dependencies": {
     "axios": "^0.17.0",
     "bcrypt": "^1.0.3",
@@ -13,12 +30,18 @@
     "mongoose": "^4.12.5",
     "morgan": "^1.9.0",
     "node-sass": "^4.5.3",
-    "validator": "^9.1.1"
+    "validator": "^9.1.1",
+    "vue": "^2.5.2"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.0",
     "babel-polyfill": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-es2015": "^6.24.1",
     "browserify": "^14.5.0",
-    "nodemon": "^1.12.1"
+    "node-sass": "^4.5.3",
+    "nodemon": "^1.12.1",
+    "uglify-js": "^3.1.6"
   }
 }

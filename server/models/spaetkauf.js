@@ -7,6 +7,9 @@ var spaetKaufSchema = new mongoose.Schema({
   createdAt: {
     type: Date
   },
+  district: {
+    type: String
+  },
   name: {
     type: String,
     required: true
@@ -19,6 +22,72 @@ var spaetKaufSchema = new mongoose.Schema({
     postalcode: {
       type: Number,
       required: true
+    }
+  },
+  position: {
+    latitude: {
+      type: Number
+    },
+    longitude: {
+      type: Number
+    }
+  },
+  open: {
+    monday: {
+      from: {
+        type: Number
+      },
+      until: {
+        type: Number
+      }
+    },
+    tuesday: {
+      from: {
+        type: Number
+      },
+      until: {
+        type: Number
+      }
+    },
+    wednesday: {
+      from: {
+        type: Number
+      },
+      until: {
+        type: Number
+      }
+    },
+    thursday: {
+      from: {
+        type: Number
+      },
+      until: {
+        type: Number
+      }
+    },
+    friday: {
+      from: {
+        type: Number
+      },
+      until: {
+        type: Number
+      }
+    },
+    saturday: {
+      from: {
+        type: Number
+      },
+      until: {
+        type: Number
+      }
+    },
+    sunday: {
+      from: {
+        type: Number
+      },
+      until: {
+        type: Number
+      }
     }
   }
 

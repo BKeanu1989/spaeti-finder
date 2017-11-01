@@ -30,6 +30,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(express.static(path.join(__dirname, '..', 'public')));
 
+app.use('/intern/js', express.static(path.join(__dirname, '..', 'public', 'js')));
+
 app.use('/', spaeti);
 // later ...
 // app.use('/users', users);
