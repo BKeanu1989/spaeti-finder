@@ -73,11 +73,12 @@ Vue.component('google-map', {
       const element = document.getElementById(this.mapName);
       const options = {
         zoom: 14,
-        center: new google.maps.LatLng(coordsArray[0].latitude, coordsArray[0].longitude)
+        center: new google.maps.LatLng(coordsArray[2].latitude, coordsArray[2].longitude)
       };
       const map = new google.maps.Map(element, options);
       this.markerCoordinates = coordsArray;
       console.log("this markerCoordinates in eventBus:", this.markerCoordinates);
+      // this.markerCoordinates.forEach((coord) => {
       this.markerCoordinates.forEach((coord) => {
         console.log("single coord:", coord);
         const position = new google.maps.LatLng(coord.latitude, coord.longitude);

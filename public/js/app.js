@@ -1688,11 +1688,12 @@ Vue.component('google-map', {
       var element = document.getElementById(_this.mapName);
       var options = {
         zoom: 14,
-        center: new google.maps.LatLng(coordsArray[0].latitude, coordsArray[0].longitude)
+        center: new google.maps.LatLng(coordsArray[2].latitude, coordsArray[2].longitude)
       };
       var map = new google.maps.Map(element, options);
       _this.markerCoordinates = coordsArray;
       console.log("this markerCoordinates in eventBus:", _this.markerCoordinates);
+      // this.markerCoordinates.forEach((coord) => {
       _this.markerCoordinates.forEach(function (coord) {
         console.log("single coord:", coord);
         var position = new google.maps.LatLng(coord.latitude, coord.longitude);
