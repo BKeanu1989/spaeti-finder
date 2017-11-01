@@ -1687,13 +1687,21 @@ var app = new Vue({
         postalCode: 12345
       }
     }]
-  }
-});
+  },
+  mounted: function mounted() {
+    var _this = this;
 
-axios.get('/json').then(function (response) {
-  console.log(response);
-}).catch(function (error) {
-  console.log(error);
+    axios.get('/json').then(function (response) {
+      console.log("from within");
+      console.log(response);
+
+      console.log("response data", response.data);
+      _this.spaetKaufs = response.data;
+      // window["app"]["spaetKaufs"] = response;
+    }).catch(function (error) {
+      console.log(error);
+    });
+  }
 });
 
 app.message = "ttt";

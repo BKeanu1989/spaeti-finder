@@ -76,14 +76,20 @@ var app = new Vue({
         }
       }
     ]
+  },
+  mounted() {
+    axios.get('/json').then((response) => {
+      console.log("from within");
+      console.log(response);
+
+      console.log("response data", response.data);
+      this.spaetKaufs = response.data;
+      // window["app"]["spaetKaufs"] = response;
+
+    }).catch(function(error) {
+      console.log(error);
+    });
   }
 })
-
-axios.get('/json').then(function(response) {
-  console.log(response);
-
-}).catch(function(error) {
-  console.log(error);
-});
 
 app.message = "ttt";
