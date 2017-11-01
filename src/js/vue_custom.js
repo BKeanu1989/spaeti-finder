@@ -48,7 +48,6 @@ Vue.component('google-map', {
   },
   methods: {},
   mounted: function() {
-    console.log("mounted:", this.markerCoordinates);
     const element = document.getElementById(this.mapName);
     const options = {
       zoom: 14,
@@ -61,7 +60,6 @@ Vue.component('google-map', {
     });
 
     eventBus.$on("mapMarkers", (data) => {
-      console.log("eventBus on mapMarkers:", data);
       // test
       var coordsArray = [];
       data.forEach((single_data) => {
@@ -73,14 +71,12 @@ Vue.component('google-map', {
       const element = document.getElementById(this.mapName);
       const options = {
         zoom: 14,
-        center: new google.maps.LatLng(coordsArray[2].latitude, coordsArray[2].longitude)
+        center: new google.maps.LatLng(coordsArray[0].latitude, coordsArray[0].longitude)
       };
       const map = new google.maps.Map(element, options);
       this.markerCoordinates = coordsArray;
-      console.log("this markerCoordinates in eventBus:", this.markerCoordinates);
       // this.markerCoordinates.forEach((coord) => {
       this.markerCoordinates.forEach((coord) => {
-        console.log("single coord:", coord);
         const position = new google.maps.LatLng(coord.latitude, coord.longitude);
         const marker = new google.maps.Marker({position, map});
       });
@@ -109,9 +105,6 @@ var app = new Vue({
   },
   mounted() {
     axios.get('/json').then((response) => {
-      console.log("from within");
-      console.log(response);
-      console.log("response data", response.data);
       this.spaetKaufs = response.data;
       // window["app"]["spaetKaufs"] = response;
       eventBus.$emit('mapMarkers', this.spaetKaufs);
