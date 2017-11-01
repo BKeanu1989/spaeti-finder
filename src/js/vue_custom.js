@@ -46,7 +46,9 @@ Vue.component('google-map', {
       ]
     }
   },
+  methods: {},
   mounted: function() {
+    console.log("mounted:", this.markerCoordinates);
     const element = document.getElementById(this.mapName);
     const options = {
       zoom: 14,
@@ -57,8 +59,23 @@ Vue.component('google-map', {
       const position = new google.maps.LatLng(coord.latitude, coord.longitude);
       const marker = new google.maps.Marker({position, map});
     });
+
+    eventBus.$on("mapMarkers", (data) => {
+      console.log("eventBus on mapMarkers:", data);
+      // test
+      var filterCoordinates = [
+        {
+          latitude: 51.501527,
+          longitude: -0.1838486
+        }
+      ];
+      this.markerCoordinates = filterCoordinates;
+      console.log("this markerCoordinates in eventBus:", this.markerCoordinates);
+    })
   }
 })
+
+const eventBus = new Vue();
 
 var app = new Vue({
   el: '#vue',
@@ -89,6 +106,8 @@ var app = new Vue({
     }).catch(function(error) {
       console.log(error);
     });
+    eventBus.$emit('mapMarkers', this.spaetKaufs);
+
   }
 })
 
