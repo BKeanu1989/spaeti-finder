@@ -1678,12 +1678,26 @@ Vue.component('google-map', {
     eventBus.$on("mapMarkers", function (data) {
       console.log("eventBus on mapMarkers:", data);
       // test
-      var filterCoordinates = [{
-        latitude: 51.501527,
-        longitude: -0.1838486
-      }];
-      _this.markerCoordinates = filterCoordinates;
+      var coordsArray = [];
+      data.forEach(function (single_data) {
+        var obj = {};
+        obj.latitude = single_data.position.latitude;
+        obj.longitude = single_data.position.longitude;
+        coordsArray.push(obj);
+      });
+      var element = document.getElementById(_this.mapName);
+      var options = {
+        zoom: 14,
+        center: new google.maps.LatLng(coordsArray[0].latitude, coordsArray[0].longitude)
+      };
+      var map = new google.maps.Map(element, options);
+      _this.markerCoordinates = coordsArray;
       console.log("this markerCoordinates in eventBus:", _this.markerCoordinates);
+      _this.markerCoordinates.forEach(function (coord) {
+        console.log("single coord:", coord);
+        var position = new google.maps.LatLng(coord.latitude, coord.longitude);
+        var marker = new google.maps.Marker({ position: position, map: map });
+      });
     });
   }
 });
@@ -1711,14 +1725,13 @@ var app = new Vue({
     axios.get('/json').then(function (response) {
       console.log("from within");
       console.log(response);
-
       console.log("response data", response.data);
       _this2.spaetKaufs = response.data;
       // window["app"]["spaetKaufs"] = response;
+      eventBus.$emit('mapMarkers', _this2.spaetKaufs);
     }).catch(function (error) {
       console.log(error);
     });
-    eventBus.$emit('mapMarkers', this.spaetKaufs);
   }
 });
 
